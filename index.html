@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffebf3;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff69b4;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .character {
+            width: 150px;
+            height: 150px;
+            margin: 1rem auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .character svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .yes-btn {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #ffd1dc;
+            color: #ff69b4;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message {
+            font-size: 1.2rem;
+            color: #ff69b4;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my April Fool? 🎭💕</h1>
+        <div class="character">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#ff69b4" stroke-width="2"/>
+                <circle cx="35" cy="40" r="8" fill="#ff69b4"/>
+                <circle cx="65" cy="40" r="8" fill="#ff69b4"/>
+                <path d="M 35 65 Q 50 75 65 65" fill="none" stroke="#ff69b4" stroke-width="3"/>
+            </svg>
+        </div>
+        <p>Promise to make this April 1st unforgettably sweet? 🌸</p>
+        <div id="message" class="hidden"></div>
+        <div class="buttons">
+            <button class="yes-btn" onclick="sayYes()">Yes! 💝</button>
+            <button class="no-btn" onclick="moveButton(this)">No way!</button>
+        </div>
+    </div>
+
+    <script>
+        function moveButton(button) {
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            const btnRect = button.getBoundingClientRect();
+
+            const maxX = rect.width - btnRect.width;
+            const maxY = rect.height - btnRect.height;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            button.style.position = 'absolute';
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        }
+
+        function sayYes() {
+            const message = document.getElementById('message');
+            message.textContent = "Yay! Get ready for the sweetest April Fool's Day ever! 🎉💕";
+            message.classList.remove('hidden');
+            
+            // Create hearts animation
+            createHearts();
+        }
+
+        function createHearts() {
+            const heartsContainer = document.createElement('div');
+            heartsContainer.className = 'hearts';
+            document.body.appendChild(heartsContainer);
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
