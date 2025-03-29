@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Question</title>
+    <title>एक प्यारा सा सवाल ❤️</title>
     <style>
         body {
             margin: 0;
@@ -12,37 +12,52 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ffebf3;
+            background-color: #000;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
+            position: relative;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease;
+            z-index: 1;
         }
 
         .container {
             text-align: center;
             padding: 2rem;
             border-radius: 20px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
             color: #ff69b4;
             font-size: 1.8rem;
             margin-bottom: 2rem;
+            animation: bounce 2s infinite ease-in-out;
         }
 
-        .character {
-            width: 150px;
-            height: 150px;
-            margin: 1rem auto;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .character svg {
-            width: 100%;
-            height: 100%;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .buttons {
@@ -58,7 +73,10 @@
             border-radius: 25px;
             cursor: pointer;
             font-size: 1.1rem;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
         }
 
         .yes-btn {
@@ -66,98 +84,322 @@
             color: white;
         }
 
+        .yes-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
         .no-btn {
             background-color: #ffd1dc;
             color: #ff69b4;
+            position: relative;
         }
 
-        button:hover {
+        .no-btn:hover {
             transform: scale(1.05);
-        }
-
-        .hearts {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .hidden {
-            display: none;
         }
 
         #message {
             font-size: 1.2rem;
             color: #ff69b4;
             margin: 1rem 0;
+            height: 50px;
+            animation: fadeIn 1s ease;
+            display: block; /* Ensure this is visible */
+        }
+
+        #proposal-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease; /* Add transition for smooth image changes */
+        }
+
+        .floating-image {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(-20px, 20px) rotate(5deg); }
+            50% { transform: translate(20px, -20px) rotate(-5deg); }
+            75% { transform: translate(-10px, -10px) rotate(3deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -20px) rotate(-8deg); }
+            66% { transform: translate(-20px, 30px) rotate(8deg); }
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff69b4;
+            opacity: 0;
+            z-index: 0;
+            animation: floatHeart 5s forwards linear;
+            pointer-events: none;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="background" class="background-image"></div>
+    
     <div class="container">
-        <h1>Will you be my April Fool? 🎭💕</h1>
-        <div class="character">
-            <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="#ffffff" stroke="#ff69b4" stroke-width="2"/>
-                <circle cx="35" cy="40" r="8" fill="#ff69b4"/>
-                <circle cx="65" cy="40" r="8" fill="#ff69b4"/>
-                <path d="M 35 65 Q 50 75 65 65" fill="none" stroke="#ff69b4" stroke-width="3"/>
-            </svg>
-        </div>
-        <p>Promise to make this April 1st unforgettably sweet? 🌸</p>
-        <div id="message" class="hidden"></div>
+        <h1>Will you be my April Fool? ❤️</h1>
+        <div id="message">Pretty pookie pwease?</div>
+        <img id="proposal-image" src="./images/ask_main.jpg" alt="Proposal">
         <div class="buttons">
-            <button class="yes-btn" onclick="sayYes()">Yes! 💝</button>
-            <button class="no-btn" onclick="moveButton(this)">No way!</button>
+            <button class="yes-btn" onclick="sayYes()">Yes</button>
+            <button class="no-btn" id="noBtn" onmouseover="moveButton()" onclick="sayNo()">No way!</button>
         </div>
     </div>
 
     <script>
-        function moveButton(button) {
+        // Initialize elements that might be missing
+        if (!document.getElementById('message')) {
+            const messageDiv = document.createElement('div');
+            messageDiv.id = 'message';
+            messageDiv.innerHTML = 'Pretty pookie pwease?';
+            document.querySelector('.container h1').after(messageDiv);
+        }
+
+        let attempts = 0;
+        let startTime = Date.now();
+        let canClick = false;
+        let hearts = [];
+        let transitionImageShown = false;
+
+        // Set initial background and images
+        const background = document.getElementById('background');
+        background.style.backgroundImage = "url('./images/ask_main.jpg')";
+        
+        // In a real implementation, you would use actual image paths:
+        document.getElementById('proposal-image').src = "./images/ask_main.jpg";
+        
+        // Create random hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Mix of heart and emoji icons
+            const emojis = ['❤️', '🎉', '🎈'];
+            heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random starting position
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Random size
+            const size = Math.random() * 30 + 10; 
+            heart.style.fontSize = `${size}px`;
+            
+            // Random animation duration
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Start creating hearts periodically
+        setInterval(createHeart, 500);
+
+        function moveButton() {
+            if (canClick) return;
+
+            const button = document.getElementById('noBtn');
             const container = document.querySelector('.container');
             const rect = container.getBoundingClientRect();
             const btnRect = button.getBoundingClientRect();
 
-            const maxX = rect.width - btnRect.width;
-            const maxY = rect.height - btnRect.height;
+            const maxX = window.innerWidth - btnRect.width - 40;
+            const maxY = window.innerHeight - btnRect.height - 40;
 
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
 
-            button.style.position = 'absolute';
+            button.style.position = 'fixed';
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
+
+            attempts++;
+            
+            if (attempts > 2) {
+                // Show messages based on attempts
+                const message = document.getElementById('message');
+                if (message) {
+                    if (attempts === 3) {
+                        message.textContent = "Catching me isn't that easy! 🙃";
+                    } else if (attempts === 5) {
+                        message.textContent = "Still trying? You're persistent!";
+                    } else if (attempts === 7) {
+                        message.textContent = "Almost there...don't give up!";
+                    } else if (attempts === 9) {
+                        // Show transition image at attempt 9
+                        message.textContent = "Hmm, I see you're determined...";
+                        // Apply a small animation effect to the image change
+                        const img = document.getElementById('proposal-image');
+                        img.style.transform = 'scale(0.95)';
+                        img.style.opacity = '0.8';
+                        
+                        setTimeout(() => {
+                            img.src = "./images/no_main.jpg"; // Use your transition image here
+                            img.style.transform = 'scale(1)';
+                            img.style.opacity = '1';
+                            transitionImageShown = true;
+                        }, 300);
+                    }
+                }
+            }
+            
+            if (Date.now() - startTime > 8000) {
+                canClick = true;
+                button.style.backgroundColor = '#ffd1dc';
+                const message = document.getElementById('message');
+                if (message) {
+                    message.textContent = "Okay, okay, you can catch me now! 🤡";
+                }
+            }
+        }
+
+        function triggerConfetti() {
+            // Create a burst of hearts/emojis
+            for (let i = 0; i < 50; i++) {
+                setTimeout(createHeart, i * 50);
+            }
         }
 
         function sayYes() {
-            const message = document.getElementById('message');
-            message.textContent = "Yay! Get ready for the sweetest April Fool's Day ever! 🎉💕";
-            message.classList.remove('hidden');
+            // Ensure the message element exists
+            const message = document.getElementById('message') || document.querySelector('#message');
+            if (message) {
+                message.textContent = "YAY!";
+            } else {
+                console.log("Message element not found");
+            }
             
-            // Create hearts animation
-            createHearts();
+            // Update image and background with a smooth transition
+            const img = document.getElementById('proposal-image');
+            img.style.transform = 'scale(0.95)';
+            img.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                img.src = "./images/yes_main.jpg";
+                img.style.transform = 'scale(1)';
+                img.style.opacity = '1';
+            }, 300);
+            
+            background.style.backgroundImage = "url('./images/ask_main.jpg')";
+            
+            // Hide no button
+            document.getElementById('noBtn').style.display = 'none';
+            
+            // Trigger confetti
+            triggerConfetti();
         }
 
-        function createHearts() {
-            const heartsContainer = document.createElement('div');
-            heartsContainer.className = 'hearts';
-            document.body.appendChild(heartsContainer);
-
-            for (let i = 0; i < 20; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '💖';
-                heart.style.position = 'absolute';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                heartsContainer.appendChild(heart);
+        function sayNo() {
+            if (!canClick) return;
+            
+            // Disable the button immediately to prevent multiple clicks
+            const noBtn = document.getElementById('noBtn');
+            noBtn.disabled = true;
+            noBtn.style.cursor = 'default';
+            noBtn.style.opacity = '0.7';
+            
+            // Also set a flag to track if sequence is already in progress
+            if (window.transitionInProgress) return;
+            window.transitionInProgress = true;
+            
+            const message = document.getElementById('message');
+            const img = document.getElementById('proposal-image');
+            
+            // If we haven't shown the transition image during mouse movement attempts
+            // or if showing a different image
+            if (!transitionImageShown || !img.src.includes('no_main.jpg')) {
+                message.textContent = "Hmm, let me think about this...";
+                
+                // Apply transition effect
+                img.style.transform = 'scale(0.95)';
+                img.style.opacity = '0.8';
+                
+                // Show transition image first
+                setTimeout(() => {
+                    img.src = "./images/no_main.jpg";
+                    img.style.transform = 'scale(1)';
+                    img.style.opacity = '1';
+                    
+                    // Then after a delay, show the rejection message and final image
+                    setTimeout(() => {
+                        message.textContent = "Too late! 🐡 You're already my April Fool! 😗";
+                        
+                        // Apply another transition effect
+                        img.style.transform = 'scale(0.95)';
+                        img.style.opacity = '0.8';
+                        
+                        setTimeout(() => {
+                            img.src = "./images/no_2.jpg";
+                            img.style.transform = 'scale(1)';
+                            img.style.opacity = '1';
+                            
+                            // And finally redirect to Yes after a delay
+                            setTimeout(() => {
+                                sayYes();
+                                window.transitionInProgress = false;
+                            }, 5000);
+                        }, 300);
+                    }, 3000);
+                }, 300);
+            } else {
+                // If we're already showing the transition image, go directly to final image
+                message.textContent = "Too late! 🐡 You're already my April Fool! 😗";
+                
+                // Apply transition effect
+                img.style.transform = 'scale(0.95)';
+                img.style.opacity = '0.8';
+                
+                setTimeout(() => {
+                    img.src = "./images/no_2.jpg";
+                    img.style.transform = 'scale(1)';
+                    img.style.opacity = '1';
+                    
+                    // Redirect to Yes after a delay
+                    setTimeout(() => {
+                        sayYes();
+                        window.transitionInProgress = false;
+                    }, 6000);
+                }, 300);
             }
+            
+            background.style.backgroundImage = "url('./images/ask_main.jpg')";
         }
     </script>
 </body>
